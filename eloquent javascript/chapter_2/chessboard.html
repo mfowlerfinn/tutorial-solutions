@@ -1,0 +1,41 @@
+<html>
+<body>
+see javascript console
+<script>
+	let size = 8;
+	let row = "";
+	for(let line=0; line < size; line++) {
+			if (line%2>0) {
+				for (let count=0; count<size; count++) {
+					if (count%2>0) {
+						row = row + "#";
+					}
+					else	{
+						row = row + " ";
+					}
+					if ((count+1)==size){
+						console.log(row);
+						row = "";
+					}
+				}
+			}
+			else {
+					for (let count=0; count<size; count++) {
+						if (count%2>0) {
+							row = row + " ";
+						}
+						else	{
+							row = row + "#";
+						}
+						if ((count+1)==size) {
+							console.log(row);
+							row = "";
+							}
+					}
+				}
+			
+	}
+	
+</script>
+</body>
+</html>

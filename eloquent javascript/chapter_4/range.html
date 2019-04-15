@@ -1,0 +1,35 @@
+<html>
+<body>
+see javascript console
+<script>
+	var start,end,sumT,step;
+	let someRange = [];
+
+	function range(start,end,step) {
+		someRange = [];
+		if (step != null) {
+			step = step;
+		}
+		else {
+			step = 1;
+		}
+
+		for(x=start;x<=end; x) {
+			someRange.push(x);
+			x=x+step;
+		}
+		sum();
+		console.log(someRange);
+		console.log(step);
+		return sumT;
+	}
+
+	function sum() {
+		sumT=0;
+		for(let entry of someRange) {
+			sumT = entry + sumT;
+		}
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<html>
+<body>
+see javascript console
+<script>
+	var even;
+	function isEven( a ) {
+		a = Math.abs(a);
+		while ( a > 1 ) {
+			a = a - 2;
+		}
+		if (a==0) {
+			even = true;
+		}
+		else if (a==1) {
+			even = false;
+		}
+		return even;
+	}
+	isEven(50);
+	console.log(even);
+</script>
+</body>
+</html>

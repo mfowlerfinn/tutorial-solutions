@@ -1,0 +1,25 @@
+<html>
+<body>
+see javascript console
+<script>
+	function countBs(myword) {
+		let n = 0;
+		let letterString = String(myword);
+		let p = letterString.length;
+		while (p > 0) {
+			p = p - 1;
+			if (letterString[p]=="B") {
+				n++;
+			}
+		}
+		if (n==1) {
+		console.log(n + " B in " + myword);
+		}
+		else {
+		console.log(n + " Bs in " + myword);
+		}
+	}
+	console.log(countBs("Bob"));
+</script>
+</body>
+</html>

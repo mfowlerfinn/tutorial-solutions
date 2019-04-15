@@ -1,0 +1,44 @@
+<html>
+<body>
+see javascript console
+<script>
+	let array = [];
+	let newArray = [];
+	let temp = [];
+	var y;
+
+	function create() {
+		array = [];
+		for (let x=0; x<10; x++) {
+			y = Math.floor((Math.random()*10));
+			array.push(y);
+		}
+		console.log(array);
+	}
+
+	function reverseArray() {
+		create();
+		newArray = [];
+		for (let i = array.length; i!=0; i) {
+			i=i-1;
+			newArray.push(array[i]);
+		}
+		console.log(newArray);
+	}
+
+	function reverseInPlace() {
+		let x=array.length-1;
+		for (let i=x; i>=0;i--) {
+			y = array[i];
+			array.push(y);
+		}
+		for (let i=0; i<x+1;i++) {
+			array.shift();
+		}
+		return array;
+	}
+
+
+</script>
+</body>
+</html>

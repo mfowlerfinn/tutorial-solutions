@@ -1,0 +1,57 @@
+<html>
+<body>
+see javascript console
+<script>
+
+	let newArray = [];
+	let temp = [];
+	var y;
+
+	let arr = [];
+	let list = {};
+
+function nest(arr) {
+    for (var obj = {}, ptr = obj, i = 0, j = arr.length; i < j; i++) {
+    	console.log(obj);
+    	ptr = (ptr[arr[i]]);
+    	console.log(obj);
+    }
+    return obj;
+}
+
+	
+	function create() {
+		arr = [];
+		for (let x=0; x<10; x++) {
+			y = Math.floor((Math.random()*10));
+			arr.push(y);
+		}
+		console.log(arr);
+	}
+
+	function reverseArray() {
+		create();
+		newArray = [];
+		for (let i = array.length; i!=0; i) {
+			i=i-1;
+			newArray.push(array[i]);
+		}
+		console.log(newArray);
+	}
+
+	function reverseInPlace() {
+		let x=array.length-1;
+		for (let i=x; i>=0;i--) {
+			y = array[i];
+			array.push(y);
+		}
+		for (let i=0; i<x+1;i++) {
+			array.shift();
+		}
+		return array;
+	}
+
+
+</script>
+</body>
+</html>
