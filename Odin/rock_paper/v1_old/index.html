@@ -1,0 +1,93 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+<script>
+let computerSelection;
+let clientSelection;
+let clientWin, compWin;
+let scoreH = 0;
+let scoreC = 0;
+let round;
+let a,b;
+
+function humanInput() { 
+	clientSelection = prompt("rock, paper, or scissors?", "");
+	console.log("Human plays " + clientSelection);
+}
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+
+function computerPlay() {
+	a = getRandomInt(3);
+	switch (a) {
+		case 0:
+			b = "rock";
+			break;
+		
+		case 1:
+			b = "paper";
+			break;
+		
+		case 2:
+			b = "scissors";
+			break;
+		
+	}
+	computerSelection = b;
+	console.log("computer plays " + b);
+}
+
+function playRound(clientSelection, computerSelection) {
+	//clientSelection = clientSelection.toLowerCase();
+
+	if (clientSelection == computerSelection) {
+		console.log("tie")
+	}
+	else if (computerSelection == "rock") {
+		(clientSelection=="paper")? clientWin = 1 : compWin = 1;
+	}
+	else if (computerSelection == "scissors") {
+		(clientSelection=="rock")? clientWin = 1: compWin = 1;
+	}
+	else if (computerSelection == "paper") {
+		(clientSelection=="scissors")? clientWin = 1: compWin = 1;
+	}
+	else {
+		console.log("Error comparing some bogus input");
+	}
+	if (clientWin == 1) {
+		console.log("you win");
+		console.log(clientSelection + " beats " + computerSelection);
+		scoreH++;
+	}
+	else if (compWin == 1) {
+		console.log("comp wins");
+		console.log(computerSelection + " beats " + clientSelection);
+		scoreC++;
+	}
+	compWin = 0;
+	clientWin = 0;
+}
+
+function Play() {
+	for (i=0; i<5; i) {
+		humanInput();
+		computerPlay();
+		playRound(clientSelection, computerSelection);
+		i++;
+	}
+	console.log ("Comp: " + scoreC + "   Human: " + scoreH);
+}
+
+
+
+</script>
+</head>
+
+<body>
+	
+</body>
+
+</html>

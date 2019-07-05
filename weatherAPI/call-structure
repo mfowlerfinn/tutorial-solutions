@@ -1,0 +1,24 @@
+OpenWeatherMap
+id(STL) = 4407066
+APIKEY = 9bde3a8b4a80eadc72e0300a4aa07691
+lat lon = 38.603174, -90.253981
+
+
+API call (weather):
+http://api.openweathermap.org/data/2.5/forecast?id=524901&APPID={APIKEY}
+
+http://api.openweathermap.org/data/2.5/forecast?id=4407066&APPID=9bde3a8b4a80eadc72e0300a4aa07691&units=imperial
+
+
+API call (uvi)
+http://api.openweathermap.org/data/2.5/uvi?appid={appid}&lat={lat}&lon={lon}
+
+http://api.openweathermap.org/data/2.5/uvi?appid=9bde3a8b4a80eadc72e0300a4aa07691&lat=38.603174&lon=-90.253981
+
+
+OpenUV
+APIKEY = 8e4383ca593b4e109f3d637574540c73 (x-access-token)
+API call
+
+'https://api.openuv.io/api/v1/uv?lat=-31.45&lng=115.67&dt=2018-01-24T10:50:52.283Z' \
+-H 'x-access-token: 8e4383ca593b4e109f3d637574540c73'

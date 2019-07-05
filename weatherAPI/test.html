@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Type Ahead 👀</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <button class="control button" onclick="updatePage()">Update inner HTML</button>
+    <button class="control button" onclick="getData()">Update data</button>
+    <ul id="container">
+    </ul>
+<script>
+    var weather;
+    var uvi;
+    lat=38.603174;
+    lng=-90.253981;
+
+    function getData() {
+        fetch('http://api.openweathermap.org/data/2.5/weather?id=4407066&APPID=9bde3a8b4a80eadc72e0300a4aa07691&units=imperial')
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(myJson) {
+                weather = jsonCopy(myJson);
+                console.log(weather);
+            });
+
+        function jsonCopy(src) {
+            return JSON.parse(JSON.stringify(src));
+        }
+
+        fetch('https://api.openuv.io/api/v1/uv?lat=38.60&lng=-90.30', {
+            method: 'GET',
+            headers: 
+            { 'content-type': 'application/json',
+                'x-access-token': '8e4383ca593b4e109f3d637574540c73' },
+        })
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(myJson) {
+                uvi = jsonCopy(myJson);
+                console.log(uvi);
+            });
+    }
+
+    function updatePage() {
+        var solarNoon = new Date(uvi.result.sun_info.sun_times.solarNoon);
+        list.innerHTML = `
+        <li>Temp now: ${weather.main.temp}F</li>
+        <li>RH now: ${weather.main.humidity}%</li>
+        <li>Current UVI: ${uvi.result.uv}</li>
+        <li>Max UVI today: ${uvi.result.uv_max}</li>
+        <li>Solar Noon: ${solarNoon}</li>
+
+        `;
+
+       
+        Object.keys(uvi).forEach(function (item) {
+            console.log(item); // key
+            console.log(uvi[item]); // value
+        });
+
+    }
+
+    const list = document.querySelector('ul');
+
+
+</script>
+</body>
+</html>

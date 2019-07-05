@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Etch-A-Sketch</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="top">
+        <button class="control button" onclick="setGridSize()">Set Grid Size</button>
+        <button class="control button clear" onclick="clearGrid()">Clear Grid</button>
+        <div class="status control">Welcome!</div>
+    </div>
+    <div class="container">
+        <div class="box box1">BROKEN!</div>
+    </div>
+<script> 
+    var gridX = 16; //each direction(16 makes a 16 x 16 grid)
+    const gridContainer = document.querySelector('.container');
+    var items = document.querySelector('.box');
+
+    function populateGrid(x) {
+        gridX = x;
+        var gridTotal = gridX * gridX;
+        var hString = [];
+        for (i=1; i <= gridTotal; i++) {
+            hString[i] = `<div class="box"></div>`;
+        }
+        gridContainer.innerHTML = hString.join('');
+        resizeObjects(gridX);
+    }
+    
+    function resizeObjects(gridX) {
+        var split = (100/gridX) + "%";
+        items = document.querySelectorAll('.box');
+        items.forEach(item => [item.style.width, item.style.height] = [split, split]);
+        items.forEach(item => item.addEventListener('mouseover', changeColor));
+    }
+
+    function setGridSize() {
+        var msg;
+        var text = prompt("Enter one leg of grid size");
+        if (text == null || text == "" || isNaN(text)) {
+            msg = "size missing,... using default 16 x 16 grid."
+        }
+        else {
+            gridX = text;
+            msg = "Now using a " + gridX + " x " + gridX + " grid.";
+        }
+        populateGrid(gridX);
+        document.querySelector(".status").innerHTML = msg;
+    }
+
+    function changeColor(e) {
+        this.classList.add('changed');
+    }
+
+    function clearGrid() {
+        items = document.querySelectorAll('.box');
+        items.forEach(item => item.classList.remove('changed'));
+        msg = "grid cleared"
+        document.querySelector(".status").innerHTML = msg;
+    }
+
+    const clearBtn = document.querySelector('.clear');
+    clearBtn.addEventListener('click', clearGrid);
+    populateGrid(gridX);
+</script>
+
+</body>
+</html>

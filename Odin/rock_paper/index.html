@@ -1,0 +1,136 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+<script type="text/javascript" src="https://www.cornify.com/js/cornify.js"></script>
+
+</head>
+
+<body>
+
+<div id="game">
+	<ul class="scoreboard">
+			Computer: 0
+			Human: 0
+	</ul>
+	<button type="button" class="start">Start!</button>
+	<div id="images" class="icons">
+		<img id="rock" src="./img/rock.png" class="icon"></img>
+		<img id="paper" src="./img/paper.png" class="icon"></img>
+		<img id="scissors" src="./img/scissors.png" class="icon"></img>
+	</div>
+
+</div>
+	
+<script>
+	let computerSelection;
+	let clientSelection;
+	let clientWin, compWin;
+	let scoreH = 0;
+	let scoreC = 0;
+	let round;
+	let a,b;
+	
+	function humanInput() { 
+		clientSelection = prompt("rock, paper, or scissors?", "");
+		console.log("Human plays " + clientSelection);
+	}
+	
+	function getRandomInt(max) {
+		return Math.floor(Math.random() * Math.floor(max));
+	}
+	
+	function computerPlay() {
+		a = getRandomInt(3);
+		switch (a) {
+			case 0:
+				b = "rock";
+				break;
+			
+			case 1:
+				b = "paper";
+				break;
+			
+			case 2:
+				b = "scissors";
+				break;
+		}
+		computerSelection = b;
+		console.log("computer plays " + b);
+	}
+	
+	function playRound(e) {
+		console.log(e);
+		computerPlay();
+		clientSelection = this.id;
+		console.log("Human plays " + clientSelection);
+	
+		if (clientSelection == computerSelection) {
+			console.log("tie")
+			console.log("computer and human selected " + clientSelection + "!")
+		}
+		else if (computerSelection == "rock") {
+			(clientSelection=="paper")? clientWin = 1 : compWin = 1;
+		}
+		else if (computerSelection == "scissors") {
+			(clientSelection=="rock")? clientWin = 1 : compWin = 1;
+		}
+		else if (computerSelection == "paper") {
+			(clientSelection=="scissors")? clientWin = 1 : compWin = 1;
+		}
+		else {
+			console.log("Error comparing some bogus input");
+		}
+		score();
+
+
+	}
+
+	function score() {
+		if (clientWin == 1) {
+			console.log("you win this round");
+			console.log(clientSelection + " beats " + computerSelection);
+			//cornify_add();
+			scoreH++;
+		}
+		else if (compWin == 1) {
+			console.log("comp wins this round");
+			console.log(computerSelection + " beats " + clientSelection);
+			scoreC++;
+		}
+		if (scoreC > 2 || scoreH > 2) {
+			if(scoreC > scoreH) { scoreBoard.innerHTML = `Computer Wins... :(`};
+			if(scoreH > scoreC) { scoreBoard.innerHTML = `You Win! :)`};
+			[scoreC,scoreH] = [0,0];
+		}
+		else {
+		setScore();
+		[compWin,clientWin] = [0,0];	
+		}
+	}
+
+	function setScore(e) {
+		console.log(e);
+		scoreBoard.innerHTML = `
+			Computer: ${scoreC}
+			Human: ${scoreH}`;	
+		console.log ("Computer: " + scoreC + "   Human: " + scoreH);
+	}
+	
+	function newGame() {
+		[scoreC, scoreH] = [0, 0];
+		setScore();
+	}
+
+	function onHover(e) {
+		this.classList.add('hover');
+	}
+
+	const icons = document.querySelectorAll('.icon');
+	const scoreBoard = document.querySelector('.scoreboard');
+	icons.forEach(key => key.addEventListener('click', playRound));
+	const startG = document.querySelector('.start');
+	startG.addEventListener('click', newGame);
+	</script>	
+</body>
+
+</html>
